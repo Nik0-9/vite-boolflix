@@ -1,5 +1,5 @@
 <template>
-    <HeaderComponent />
+    <HeaderComponent @searchMovie="setMovieFilter"/>
     <MainComponent />
 </template>
 
@@ -21,20 +21,30 @@ import MainComponent from './components/MainComponent.vue';
       }
     },
     methods:{
+      setMovieFilter(){
+        if(this.store.movieFilter){
+          this.qString.params.query = this.store.movieFilter
+        }else{
+          this.store.movieFilter = ''
+        }
+      },
       getMovies(){
         axios.get(this.store.baseUrl + this.store.endPoint.movie, this.store.qString).then((res)=>{
           console.log(res.data.results);
+          this.store.movies = res.data.results;
         });
       },
       getSeries(){
         axios.get(this.store.baseUrl + this.store.endPoint.tv, this.store.qString).then((res)=>{
           console.log(res.data.results);
+          this.store.series = res.data.results;
+
         });
     }
   },
     created(){
-      //this.getMovies();
-      //this.getSeries();
+      this.getMovies();
+      this.getSeries();
 
     }
   }

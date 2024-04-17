@@ -4,15 +4,21 @@
             <h1 class="text-uppercase">boolflix</h1>
         </div>
         <div class="input-group w-50">
-            <input type="text" class="form-control" placeholder="Cerca il titolo di un film o una serie-TV" >
+            <input type="text" class="form-control" placeholder="Cerca il titolo di un film o una serie-TV" @keyup.enter="$emit('searchMovies')" v-model="store.movieFilter">
             <button class="btn btn-outline-danger" type="button">Cerca</button>
         </div>
     </header>
 </template>
 
 <script>
+import {store} from '../store';
     export default {
-        name: 'HeaderComponent'
+        name: 'HeaderComponent',
+        data(){
+            return{
+                store
+            }
+        }
     }
 </script>
 
