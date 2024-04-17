@@ -1,6 +1,5 @@
 @use './partials/variables' as *;
 
-
 $fa-font-path: '../fonts/webfonts';   
 
 @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
@@ -17,8 +16,4 @@ $fa-font-path: '../fonts/webfonts';
 
 body{
     font-family: $basefont;
-}
-
-h1 {
-    color: $bluetext;
 }
