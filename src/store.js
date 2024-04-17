@@ -9,7 +9,7 @@ export const store = reactive({
     qString: {
         params:{
             api_key: '8314eb4e384ebe27d5bd475eacad9b19',
-            query:'a',
+            query:'',
         }
     },
     baseUrlImg: 'https://image.tmdb.org/t/p/w500',

@@ -4,8 +4,8 @@
             <h1 class="text-uppercase">boolflix</h1>
         </div>
         <div class="input-group w-50">
-            <input type="text" class="form-control" placeholder="Cerca il titolo di un film o una serie-TV" @keyup.enter="$emit('searchMovies')" v-model="store.movieFilter">
-            <button class="btn btn-outline-danger" type="button">Cerca</button>
+            <input type="text" class="form-control" placeholder="Cerca il titolo di un film o serie-TV" @keyup.enter="$emit('searchMovie') " v-model="store.movieFilter">
+            <button class="btn btn-outline-danger" type="button" @click="$emit('searchMovie')">Cerca</button>
         </div>
     </header>
 </template>

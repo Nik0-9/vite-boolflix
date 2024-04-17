@@ -1,55 +1,51 @@
 <template>
-    <HeaderComponent @searchMovie="setMovieFilter"/>
-    <MainComponent />
+  <HeaderComponent @searchMovie="setMovieFilter" />
+  <MainComponent />
 </template>
 
 <script>
 import axios from 'axios';
-import {store} from './store';
+import { store } from './store';
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
 
-  export default {
-    name: 'App',
-    components:{
-      HeaderComponent,
-      MainComponent
-    },
-    data(){
-      return{
-        store
-      }
-    },
-    methods:{
-      setMovieFilter(){
-        if(this.store.movieFilter){
-          this.qString.params.query = this.store.movieFilter
-        }else{
-          this.store.movieFilter = ''
-        }
-      },
-      getMovies(){
-        axios.get(this.store.baseUrl + this.store.endPoint.movie, this.store.qString).then((res)=>{
-          console.log(res.data.results);
-          this.store.movies = res.data.results;
-        });
-      },
-      getSeries(){
-        axios.get(this.store.baseUrl + this.store.endPoint.tv, this.store.qString).then((res)=>{
-          console.log(res.data.results);
-          this.store.series = res.data.results;
-
-        });
+export default {
+  name: 'App',
+  components: {
+    HeaderComponent,
+    MainComponent
+  },
+  data() {
+    return {
+      store
     }
   },
-    created(){
+  methods: {
+    setMovieFilter() {
+      if (this.store.movieFilter) {
+        this.store.qString.params.query = this.store.movieFilter
+      } else {
+        this.store.qString.params.query = ''
+      }
       this.getMovies();
       this.getSeries();
-
+    },
+    getMovies() {
+      axios.get(this.store.baseUrl + this.store.endPoint.movie, this.store.qString).then((res) => {
+        console.log(res.data.results);
+        this.store.movies = res.data.results;
+      });
+    },
+    getSeries() {
+      axios.get(this.store.baseUrl + this.store.endPoint.tv, this.store.qString).then((res) => {
+        console.log(res.data.results);
+        this.store.series = res.data.results;
+      });
     }
+  },
+  created() {
   }
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

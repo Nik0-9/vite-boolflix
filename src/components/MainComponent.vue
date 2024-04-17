@@ -1,5 +1,6 @@
 <template>
     <main class="container">
+        <h2>Fai la tua ricerca</h2>
         <MovieList />
     </main>
 </template>

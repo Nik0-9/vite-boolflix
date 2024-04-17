@@ -3,6 +3,9 @@
         <div class="col " v-for="item in store.movies" >
             <CardComponent :image="store.baseUrlImg + item.poster_path"/>
         </div>
+        <div class="col " v-for="item in store.series" >
+            <CardComponent :image="store.baseUrlImg + item.poster_path"/>
+        </div>
     </div>
 </template>
 
