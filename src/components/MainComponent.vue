@@ -1,20 +1,25 @@
 <template>
     <main class="container">
-        <h2>Fai la tua ricerca</h2>
-        <MovieList />
+        <MovieList v-if="store.qString.params.query"/>
+        <h2 v-else>Fai la tua ricerca</h2>
     </main>
 </template>
 
 <script>
-import MovieList from './MovieList.vue'
+import {store} from '../store';
+import MovieList from './MovieList.vue';
     export default {
         name: 'MainComponent',
-        components:{MovieList}
+        components:{MovieList},
+        data(){
+            return{
+                store
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
-@use '../assets/styles/partials/variables' as *;
 
 
 </style>

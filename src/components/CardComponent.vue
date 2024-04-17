@@ -12,8 +12,6 @@
 </script>
 
 <style lang="scss" scoped>
-.card{
-    height: 400px;
-}
+
 
 </style>
