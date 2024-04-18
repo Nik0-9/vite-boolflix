@@ -127,8 +127,10 @@ img {
     overflow-y: auto;
     overflow-x: hidden;
     div {
-        //margin: 5px 0;
         padding: 8px;
+    }
+    h6{
+        overflow-y: scroll;
     }
 }
 </style>

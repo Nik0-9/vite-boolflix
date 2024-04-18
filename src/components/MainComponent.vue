@@ -1,5 +1,5 @@
 <template>
-    <main class="container m-auto ">
+    <main class="container ">
             <div v-if="store.qString.params.query" class="m-auto">
                 <MovieList  />
             </div>
