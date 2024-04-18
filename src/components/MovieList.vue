@@ -34,8 +34,9 @@ h2 {
     margin: 20px 0;
 }
 div{
-    width: calc(100% / 6);
+    width: 250px;
     display: inline-block;
+
 }
 
 </style>

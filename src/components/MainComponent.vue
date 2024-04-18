@@ -1,11 +1,9 @@
 <template>
-    <main>
-        <div class="my-container">
-            <div v-if="store.qString.params.query">
+    <main class="container m-auto ">
+            <div v-if="store.qString.params.query" class="m-auto">
                 <MovieList  />
             </div>
             <h2 v-else>Fai la tua ricerca</h2>
-        </div>
     </main>
 </template>
 
@@ -30,7 +28,6 @@ main{
 }
 .my-container{
     width: 90%;
-    margin: 0 auto;
 }
 
 </style>
