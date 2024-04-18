@@ -2,12 +2,12 @@
         <h2 v-if="store.qString.params.query">film</h2>
         <div  v-for="item in store.movies">
             <CardComponent :image="store.baseUrlImg + item.poster_path" :title="item.title"
-                :originalTitle="item.original_title" :language="item.original_language" :vote="item.vote_average" />
+                :originalTitle="item.original_title" :language="item.original_language" :vote="item.vote_average" :overview="item.overview"/>
         </div>
         <h2 v-if="store.qString.params.query">serie tv</h2>
         <div  v-for="item in store.series">
             <CardComponent :image="store.baseUrlImg + item.poster_path" :title="item.name"
-                :originalTitle="item.original_name" :language="item.original_language" :vote="item.vote_average" />
+                :originalTitle="item.original_name" :language="item.original_language" :vote="item.vote_average" :overview="item.overview"/>
         </div>
 </template>
 
