@@ -1,16 +1,14 @@
 <template>
-    <div class="row">
         <h2 v-if="store.qString.params.query">film</h2>
-        <div class="col " v-for="item in store.movies">
+        <div  v-for="item in store.movies">
             <CardComponent :image="store.baseUrlImg + item.poster_path" :title="item.title"
                 :originalTitle="item.original_title" :language="item.original_language" :vote="item.vote_average" />
         </div>
         <h2 v-if="store.qString.params.query">serie tv</h2>
-        <div class="col " v-for="item in store.series">
+        <div  v-for="item in store.series">
             <CardComponent :image="store.baseUrlImg + item.poster_path" :title="item.name"
                 :originalTitle="item.original_name" :language="item.original_language" :vote="item.vote_average" />
         </div>
-    </div>
 </template>
 
 <script>
@@ -35,4 +33,9 @@ h2 {
     color: $titlecolor;
     margin: 20px 0;
 }
+div{
+    width: calc(100% / 6);
+    display: inline-block;
+}
+
 </style>

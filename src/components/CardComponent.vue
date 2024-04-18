@@ -7,28 +7,56 @@
             <div class="flip-card-back">
                 <div>{{ title }}</div>
                 <div>{{ originalTitle }}</div>
-                <div>{{ vote }}</div>
-                <div>{{ language }}</div>
+                <div class="flag">
+                    <img :src="`/img/${language}.png`" :alt="language" >
+                    <div>{{ vote }}</div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import {store} from '../store';
 export default {
     name: 'CardComponent',
-    props: ['title', 'originalTitle', 'language', 'vote', 'image']
-}
+    props: ['title', 'originalTitle', 'language', 'vote', 'image'],
+    data(){
+        return{
+            store,
+            flags: [
+                'it',
+                'jp',
+                'ko',
+                'es',
+                'en',
+                'us',
+                'fr'
+                ],
+            }
+        },
+    }
 </script>
 
 <style lang="scss" scoped>
 @use '../assets/styles/partials/variables' as *;
 
+img{
+    width: 250px;
+}
+
+.flag{
+    img{
+        width: 40px;
+    }
+}
+
 .flip-card {
     background-color: transparent;
-    width: 344px;
-    height: 515px;
+    width: 250px;
+    height: 380px;
     perspective: 1000px;
+    cursor: pointer;
 }
 
 .flip-card-inner {
@@ -67,6 +95,7 @@ export default {
     transform: rotateY(180deg);
     div{
         margin: 10px 0;
+        padding: 10px;
     }
 }
 </style>

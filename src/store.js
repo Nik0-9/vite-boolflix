@@ -12,8 +12,8 @@ export const store = reactive({
             query:'',
         }
     },
-    baseUrlImg: 'https://image.tmdb.org/t/p/w342',
+    baseUrlImg: 'https://image.tmdb.org/t/p/original',
     movies: [],
     series: [],
-    movieFilter: ''
+    movieFilter: '',
 })
