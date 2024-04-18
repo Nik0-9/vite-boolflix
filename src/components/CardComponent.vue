@@ -8,8 +8,10 @@
                 <div>{{ title }}</div>
                 <div>{{ originalTitle }}</div>
                 <div class="flag">
-                    <img :src="`/img/${language}.png`" :alt="language" >
-                    <div>{{ vote }}</div>
+                    <img :src="`/img/${language}.png`" :alt="language">
+                </div>
+                <div class="stars">
+                    <i :class="{ 'fa-solid': n <= voteStar, 'fa-regular': n > voteStar }" class="fa-star" v-for="n in 5"></i>
                 </div>
             </div>
         </div>
@@ -17,12 +19,12 @@
 </template>
 
 <script>
-import {store} from '../store';
+import { store } from '../store';
 export default {
     name: 'CardComponent',
     props: ['title', 'originalTitle', 'language', 'vote', 'image'],
-    data(){
-        return{
+    data() {
+        return {
             store,
             flags: [
                 'it',
@@ -32,21 +34,26 @@ export default {
                 'en',
                 'us',
                 'fr'
-                ],
-            }
-        },
+            ],
+        }
+    },
+    computed: {
+        voteStar() {
+            return Math.ceil(this.vote / 2);
+        }
     }
+}
 </script>
 
 <style lang="scss" scoped>
 @use '../assets/styles/partials/variables' as *;
 
-img{
+img {
     width: 250px;
 }
 
-.flag{
-    img{
+.flag {
+    img {
         width: 40px;
     }
 }
@@ -93,7 +100,8 @@ img{
     background-color: $navbarcolor;
     color: white;
     transform: rotateY(180deg);
-    div{
+
+    div {
         margin: 10px 0;
         padding: 10px;
     }
