@@ -47,10 +47,18 @@ export default {
         this.store.popular = res.data.results;
         console.log(res.data.results);
       });
+    },
+    getPopularTv(){
+      axios.get(this.store.baseUrl + this.store.endPoint.popularTv, this.store.qString).then((res)=>{
+        this.store.popularTv = res.data.results;
+        console.log(res.data.results);
+      });
     }
   },
   created() {
     this.getPopular();
+    this.getPopularTv();
+
   }
 }
 </script>

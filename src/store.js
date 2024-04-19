@@ -5,7 +5,8 @@ export const store = reactive({
     endPoint: {
         movie: 'search/movie',
         tv: 'search/tv',
-        popular: 'movie/popular'
+        popular: 'movie/popular',
+        popularTv: 'tv/popular'
     },
     qString: {
         params:{
@@ -17,6 +18,7 @@ export const store = reactive({
     movies: [],
     series: [],
     popular: [],
+    popularTv: [],
     movieFilter: '',
 });
 // 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc'

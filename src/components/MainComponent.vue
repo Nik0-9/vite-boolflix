@@ -1,10 +1,16 @@
 <template>
     <main class="container ">
-            <div v-if="store.qString.params.query" >
+            <div class="mb-3" v-if="store.qString.params.query" >
                 <MovieList  />
-                <CardList title="Popular" :list="store.popular"/>
+                <CardList title="Popular" :list="store.popular" class="mb-3"/>
+                <CardList title="Popular TV Series" :list="store.popularTv" class="mb-3"/>
+
             </div>
-            <CardList title="Popular" :list="store.popular" v-else/>
+            <div v-else>
+                <CardList title="Popular" :list="store.popular" class="mb-3"/>
+                <CardList title="Popular TV Series" :list="store.popularTv" class="mb-3"/>
+
+            </div>
     </main>
 </template>
 
@@ -26,6 +32,8 @@ import CardList from './CardList.vue';
 </script>
 
 <style lang="scss" scoped>
+
+
 main{
     width: 100%;
     padding-top: 90px;
