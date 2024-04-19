@@ -1,18 +1,22 @@
 <template>
     <main class="container ">
-            <div v-if="store.qString.params.query" class="m-auto">
+            <div v-if="store.qString.params.query" >
                 <MovieList  />
+                <CardList title="Popular" :list="store.popular"/>
             </div>
-            <h2 v-else>Fai la tua ricerca</h2>
+            <CardList title="Popular" :list="store.popular" v-else/>
     </main>
 </template>
 
 <script>
 import {store} from '../store';
 import MovieList from './MovieList.vue';
+import CardList from './CardList.vue';
+
     export default {
         name: 'MainComponent',
-        components:{MovieList},
+        components:{MovieList, CardList},
+        
         data(){
             return{
                 store

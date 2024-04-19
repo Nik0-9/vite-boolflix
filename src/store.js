@@ -4,7 +4,8 @@ export const store = reactive({
     baseUrl: 'https://api.themoviedb.org/3/',
     endPoint: {
         movie: 'search/movie',
-        tv: 'search/tv'
+        tv: 'search/tv',
+        popular: 'movie/popular'
     },
     qString: {
         params:{
@@ -15,5 +16,7 @@ export const store = reactive({
     baseUrlImg: 'https://image.tmdb.org/t/p/original',
     movies: [],
     series: [],
+    popular: [],
     movieFilter: '',
-})
+});
+// 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc'

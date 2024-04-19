@@ -41,11 +41,19 @@ export default {
         console.log(res.data.results);
         this.store.series = res.data.results;
       });
+    },
+    getPopular(){
+      axios.get(this.store.baseUrl + this.store.endPoint.popular, this.store.qString).then((res)=>{
+        this.store.popular = res.data.results;
+        console.log(res.data.results);
+      });
     }
   },
   created() {
+    this.getPopular();
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>
