@@ -1,16 +1,15 @@
 <template>
     <main>
         <div class="container">
-            <div class="mb-3" v-if="store.qString.params.query">
-                <MovieList />
-                <CardList title="Popular" :list="store.popular" class="mb-3" />
-                <CardList title="Popular TV Series" :list="store.popularTv" class="mb-3" />
-
+            <div class="m-3" v-if="store.qString.params.query">
+                <CardList title="Film" :list="store.movies"/>
+                <CardList title="Tv Series" :list="store.series"/>
+                <CardList title="Popular" :list="store.popular"/>
+                <CardList title="Popular TV Series" :list="store.popularTv"/>
             </div>
-            <div v-else>
-                <CardList title="Popular" :list="store.popular" class="mb-3" />
-                <CardList title="Popular TV Series" :list="store.popularTv" class="mb-3" />
-
+            <div class="m-3" v-else>
+                <CardList title="Popular" :list="store.popular"/>
+                <CardList title="Popular TV Series" :list="store.popularTv"/>
             </div>
         </div>
     </main>
@@ -18,12 +17,11 @@
 
 <script>
 import { store } from '../store';
-import MovieList from './MovieList.vue';
 import CardList from './CardList.vue';
 
 export default {
     name: 'MainComponent',
-    components: { MovieList, CardList },
+    components: {CardList },
 
     data() {
         return {
@@ -40,6 +38,10 @@ main {
     height: calc(100vh - 90px);
     position: relative;
     top: 90px;
+}
+
+div {
+    margin-top: 20px;
 }
 
 

@@ -2,18 +2,18 @@
     <div class=" flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img :src="image" :alt="title" @error="imgNotFound">
+                <img :src="store.baseUrlImg + item.poster_path" :alt="item.title" @error="imgNotFound">
             </div>
             <div class="flip-card-back">
-                <div>{{ title }}</div>
-                <div>{{ originalTitle }}</div>
+                <div>{{ item.title }}</div>
+                <div>{{ item.originalTitle }}</div>
                 <div class="flag">
-                    <img :src="`/img/${language}.png`" :alt="language" @error="flagNotFound" />
+                    <img :src="`/img/${item.original_language}.png`" :alt="item.original_language" @error="flagNotFound" />
                 </div>
                 <div class="stars">
                     <i :class="{ 'fa-solid': n <= voteStar, 'fa-regular': n > voteStar }" class="fa-star" v-for="n in 5"></i>
                 </div>
-                <h6>{{ overview }}</h6>
+                <h6>{{ item.overview }}</h6>
             </div>
         </div>
     </div>
@@ -23,7 +23,9 @@
 import { store } from '../store';
 export default {
     name: 'CardComponent',
-    props: ['title', 'originalTitle', 'language', 'vote', 'image','overview'],
+    props: {
+        item: Object
+    },
     data() {
         return {
             store,
@@ -48,7 +50,7 @@ export default {
     },  
     computed: {
         voteStar() {
-            return Math.ceil(this.vote / 2);
+            return Math.ceil(this.item.vote_average / 2);
         }
     }
 }
@@ -66,7 +68,7 @@ export default {
   }
     
   ::-webkit-scrollbar-thumb {
-    background: $titlecolor;
+    background: $textcolor2;
     border-radius: 5px;
     box-shadow: -3px -3px 10px inset $textcolor2;
   } 
@@ -85,7 +87,7 @@ img {
 .flip-card {
     background-color: transparent;
     width: 250px;
-    height: 380px;
+    aspect-ratio: 1 / 1.5;
     perspective: 1000px;
     cursor: pointer;
 }
