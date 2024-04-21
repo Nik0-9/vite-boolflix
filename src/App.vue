@@ -22,33 +22,16 @@ export default {
       store
     }
   },
-  methods: {
-    setMovieFilter() {
-      if (this.store.movieFilter) {
-        this.store.qString.params.query = this.store.movieFilter;
-        Promise.all([this.getMovies(), this.getSeries()]).then((res) => {
-          this.store.movies = res[0].data.results;
-          this.store.series = res[1].data.results;
-        }).catch((error) => {
-          console.log(error);
-          this.store.error.messages = error.message;
-        }).finally(() => {
-          console.log('finally');
-          this.stopLoading();
-        })
-        this.getMovies();
-        this.getSeries();
-      }
-      else {
-        this.store.qString.params.query = ''
-      }
-    },
+  created(){
+    this.getPopular()
+  },
 
+  methods: {
     getPopular(){
       this.store.loading = true;
       Promise.all([this.getPopularMovie(), this.getPopularTv()]).then((res) => {
         this.store.popular = res[0].data.results;
-        
+        console.log(this.store.popular);
         this.store.popularTv = res[1].data.results;
       }).catch((error) => {
         //console.log(error);
@@ -59,6 +42,25 @@ export default {
       })
       this.getPopularMovie();
       this.getPopularTv();
+    },
+
+    setMovieFilter() {
+      if (this.store.movieFilter) {
+        this.store.qString.params.query = this.store.movieFilter;
+        Promise.all([this.getMovies(), this.getSeries()]).then((res) => {
+          this.store.movies = res[0].data.results;
+          console.log(this.store.movies);
+          this.store.series = res[1].data.results;
+        }).catch((error) => {
+          console.log(error);
+          this.store.error.messages = error.message;
+        }).finally(() => {})
+        this.getMovies();
+        this.getSeries();
+      }
+      else {
+        this.store.qString.params.query = ''
+      }
     },
 
     stopLoading() {
@@ -80,11 +82,8 @@ export default {
     getPopularTv() {
       return axios.get(this.store.baseUrl + this.store.endPoint.popularTv, this.store.qString)
     }
-  },
-  created(){
-    this.getPopular()
-    console.log('created');
   }
+  
 }
 
 </script>

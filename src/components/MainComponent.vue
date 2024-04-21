@@ -1,17 +1,16 @@
 <template>
     <main>
-        <div v-if="!store.loading">
-            <JumboComponent  />
-        </div>
-        <div class="container">
+        <JumboComponent  />
+
+        <div class="container jumbomargin">
             <div v-if="!store.loading">
-                <div class="m-3" v-if="store.qString.params.query">
+                <div v-if="store.qString.params.query">
                     <CardList title="Film" :list="store.movies" />
                     <CardList title="Tv Series" :list="store.series" />
                     <CardList title="Popular" :list="store.popular" />
                     <CardList title="Popular TV Series" :list="store.popularTv" />
                 </div>
-                <div class="m-3" v-else>
+                <div v-else>
                     <CardList title="Popular" :list="store.popular" />
                     <CardList title="Popular TV Series" :list="store.popularTv" />
                 </div>
@@ -53,7 +52,12 @@ main {
     top: 90px;
 }
 
-div {
-    margin-top: 20px;
+div{
+    margin-bottom: 30px;
 }
+
+.jumbomargin{
+    margin-top: 620px;
+}
+
 </style>
