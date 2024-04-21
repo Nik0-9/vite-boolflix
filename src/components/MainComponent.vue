@@ -1,15 +1,20 @@
 <template>
     <main>
         <div class="container">
-            <div class="m-3" v-if="store.qString.params.query">
-                <CardList title="Film" :list="store.movies"/>
-                <CardList title="Tv Series" :list="store.series"/>
-                <CardList title="Popular" :list="store.popular"/>
-                <CardList title="Popular TV Series" :list="store.popularTv"/>
+            <div v-if="!store.loading">
+                <div class="m-3" v-if="store.qString.params.query">
+                    <CardList title="Film" :list="store.movies" />
+                    <CardList title="Tv Series" :list="store.series" />
+                    <CardList title="Popular" :list="store.popular" />
+                    <CardList title="Popular TV Series" :list="store.popularTv" />
+                </div>
+                <div class="m-3" v-else>
+                    <CardList title="Popular" :list="store.popular" />
+                    <CardList title="Popular TV Series" :list="store.popularTv" />
+                </div>
             </div>
-            <div class="m-3" v-else>
-                <CardList title="Popular" :list="store.popular"/>
-                <CardList title="Popular TV Series" :list="store.popularTv"/>
+            <div v-else>
+                <ApiLoader />
             </div>
         </div>
     </main>
@@ -17,11 +22,12 @@
 
 <script>
 import { store } from '../store';
+import ApiLoader from './ApiLoader.vue';
 import CardList from './CardList.vue';
 
 export default {
     name: 'MainComponent',
-    components: {CardList },
+    components: { CardList, ApiLoader },
 
     data() {
         return {
@@ -43,6 +49,4 @@ main {
 div {
     margin-top: 20px;
 }
-
-
 </style>

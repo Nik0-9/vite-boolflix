@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+
         <h2 class="ms-5">{{ title }}</h2>
         <div class="d-flex">
             <button class="leftbtn" @click="scrollList(-750)">
@@ -15,10 +16,12 @@
             </button>
         </div>
     </div>
+
 </template>
 
 <script>
 import CardComponent from './CardComponent.vue';
+
 
 export default {
     name: 'CardList',

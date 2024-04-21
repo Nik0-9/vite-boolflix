@@ -20,4 +20,8 @@ export const store = reactive({
     popular: [],
     popularTv: [],
     movieFilter: '',
+    loading: false,
+    error:{
+        message:''
+    }
 });
