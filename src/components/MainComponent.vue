@@ -1,5 +1,8 @@
 <template>
     <main>
+        <div v-if="!store.loading">
+            <JumboComponent  />
+        </div>
         <div class="container">
             <div v-if="!store.loading">
                 <div class="m-3" v-if="store.qString.params.query">
@@ -24,15 +27,19 @@
 import { store } from '../store';
 import ApiLoader from './ApiLoader.vue';
 import CardList from './CardList.vue';
+import JumboComponent from './JumboComponent.vue';
 
 export default {
     name: 'MainComponent',
-    components: { CardList, ApiLoader },
+    components: { CardList, ApiLoader,JumboComponent },
 
     data() {
         return {
             store
         }
+    },
+    created(){
+        console.log('main');
     }
 }
 </script>

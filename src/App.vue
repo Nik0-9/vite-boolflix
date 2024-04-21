@@ -1,9 +1,6 @@
 <template>
-  <div v-if="!store.loading">
     <HeaderComponent @searchMovie="setMovieFilter" />
     <MainComponent />
-  </div>
-  <ApiLoader v-else />
 </template>
 
 <script>
@@ -37,8 +34,7 @@ export default {
           this.store.error.messages = error.message;
         }).finally(() => {
           console.log('finally');
-          this.loading();
-          this.store.loading = true;
+          this.stopLoading();
         })
         this.getMovies();
         this.getSeries();
@@ -49,25 +45,24 @@ export default {
     },
 
     getPopular(){
+      this.store.loading = true;
       Promise.all([this.getPopularMovie(), this.getPopularTv()]).then((res) => {
         this.store.popular = res[0].data.results;
+        
         this.store.popularTv = res[1].data.results;
       }).catch((error) => {
-        console.log(error);
+        //console.log(error);
         this.store.error.messages = error.message;
       }).finally(() => {
         console.log('finally');
-        this.loading();
-        this.store.loading = true;
+        this.stopLoading();
       })
       this.getPopularMovie();
       this.getPopularTv();
     },
 
-    loading() {
-      setTimeout(() => {
+    stopLoading() {
         this.store.loading = false;
-      }, 2000);
     },
 
     getMovies() {
@@ -88,6 +83,7 @@ export default {
   },
   created(){
     this.getPopular()
+    console.log('created');
   }
 }
 
