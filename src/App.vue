@@ -3,7 +3,7 @@
     <HeaderComponent @searchMovie="setMovieFilter" />
     <MainComponent />
   </div>
-    <ApiLoader v-else/>
+  <ApiLoader v-else />
 </template>
 
 <script>
@@ -47,11 +47,29 @@ export default {
         this.store.qString.params.query = ''
       }
     },
+
+    getPopular(){
+      Promise.all([this.getPopularMovie(), this.getPopularTv()]).then((res) => {
+        this.store.popular = res[0].data.results;
+        this.store.popularTv = res[1].data.results;
+      }).catch((error) => {
+        console.log(error);
+        this.store.error.messages = error.message;
+      }).finally(() => {
+        console.log('finally');
+        this.loading();
+        this.store.loading = true;
+      })
+      this.getPopularMovie();
+      this.getPopularTv();
+    },
+
     loading() {
       setTimeout(() => {
         this.store.loading = false;
       }, 2000);
     },
+
     getMovies() {
       return axios.get(this.store.baseUrl + this.store.endPoint.movie, this.store.qString);
     },
@@ -60,26 +78,19 @@ export default {
       return axios.get(this.store.baseUrl + this.store.endPoint.tv, this.store.qString)
     },
 
-    getPopular() {
-      axios.get(this.store.baseUrl + this.store.endPoint.popular, this.store.qString).then((res) => {
-        this.store.popular = res.data.results;
-        console.log(res.data.results);
-      });
+    getPopularMovie() {
+      return axios.get(this.store.baseUrl + this.store.endPoint.popular, this.store.qString)
     },
+
     getPopularTv() {
-      axios.get(this.store.baseUrl + this.store.endPoint.popularTv, this.store.qString).then((res) => {
-        this.store.popularTv = res.data.results;
-        console.log(res.data.results);
-      });
+      return axios.get(this.store.baseUrl + this.store.endPoint.popularTv, this.store.qString)
     }
   },
-  created() {
-    this.loading();
-    this.store.loading = true;
-    this.getPopular();
-    this.getPopularTv();
+  created(){
+    this.getPopular()
   }
 }
+
 </script>
 
 <style lang="scss" scoped></style>
