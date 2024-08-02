@@ -23,7 +23,7 @@ import { store } from '../store';
         position: absolute;
         top: 0;
         left: 0;
-        width: 100vw;
+        width: calc(100vw - 15px);
         height: 100vh;
         background-color: $backgroundcolor;
         z-index: 2000;

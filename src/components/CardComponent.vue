@@ -5,6 +5,7 @@
                 <img :src="store.baseUrlImg + item.poster_path" :alt="item.title" @error="imgNotFound">
             </div>
             <div class="flip-card-back">
+                <div>{{ item.name }}</div>
                 <div>{{ item.title }}</div>
                 <div>{{ item.originalTitle }}</div>
                 <div class="flag">

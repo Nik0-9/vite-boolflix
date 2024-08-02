@@ -44,6 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/styles/partials/variables' as *;
 main {
     width: 100%;
     overflow-y: auto;
@@ -59,5 +60,24 @@ div{
 .jumbomargin{
     margin-top: 620px;
 }
+::-webkit-scrollbar {
+    width: 15px;
+  }
+    
+  ::-webkit-scrollbar-track {
+    background: $navbarcolor;
+    border-radius: 20px;
+  }
+    
+  ::-webkit-scrollbar-thumb {
+    height: 20px;
+    background: $titlecolor;
+    border-radius: 20px;
+    box-shadow: -3px -3px 10px inset $backgroundcolor;
+  } 
+  
+  ::-webkit-scrollbar-track:hover{
+    background-color: var(--color-secondary);
+  }
 
 </style>

@@ -23,28 +23,33 @@ export default {
     }
   },
   created(){
-    this.getPopular()
-  },
+    setTimeout(()=>{
+      this.getPopular();
+    }),3000},
 
   methods: {
     getPopular(){
       this.store.loading = true;
       Promise.all([this.getPopularMovie(), this.getPopularTv()]).then((res) => {
         this.store.popular = res[0].data.results;
-        console.log(this.store.popular);
+        console.log(this.store.popularTv);
         this.store.popularTv = res[1].data.results;
       }).catch((error) => {
         //console.log(error);
         this.store.error.messages = error.message;
       }).finally(() => {
         console.log('finally');
-        this.stopLoading();
+        setTimeout(() => {
+          this.store.loading = false;
+      }, 2000);
       })
       this.getPopularMovie();
       this.getPopularTv();
     },
 
     setMovieFilter() {
+      this.store.loading = true;
+
       if (this.store.movieFilter) {
         this.store.qString.params.query = this.store.movieFilter;
         Promise.all([this.getMovies(), this.getSeries()]).then((res) => {
@@ -57,14 +62,11 @@ export default {
         }).finally(() => {})
         this.getMovies();
         this.getSeries();
+        this.store.loading = false;
       }
       else {
         this.store.qString.params.query = ''
       }
-    },
-
-    stopLoading() {
-        this.store.loading = false;
     },
 
     getMovies() {
